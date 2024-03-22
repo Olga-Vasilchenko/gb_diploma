@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SHOP</title>
+  <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<h1>ТОВАР В НАЛИЧИИ</h1>
+<hr>
+
+<h4>Подробная информация о товаре</h4>
+
+<!--<tr th:each="image: ${images}">-->
+<!--  <img th:src="${image.id}" height="60px"/><br><br>-->
+
+  <!--  <img src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
+  <!--  <img src="@{/images/{id}(id=${image.id})}" height="90px"/><br><br>-->
+  <!--  <img th:src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
+</tr>
+
+<b>Название товара: </b>
+<td th:text="${product.title}"></td>
+<br>
+<b>Описание товара: </b>
+<td th:text="${product.description}"></td>
+<br>
+<b>Цена: </b>
+<td th:text="${product.price}"></td>
+<br>
+<b>Город: </b>
+<td th:text="${product.city}"></td>
+<br>
+<b>Имя: </b>
+<td th:text="${product.user.name}"></td>
+<b>Номер телефона: </b>
+<td th:text="${product.user.phoneNumber}"></td>
+<br>
+<hr>
+<!--<h3>Удалить товар</h3>-->
+<!--<form th:action="@{/product/delete/{id}(id=${product.id})}" th:method="POST">-->
+<!--  <input type="hidden" name="_csrf" value="${_csrf_token}">-->
+<!--  <input type="submit" value="Удалить товар"/>-->
+<!--</form>-->
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+</head>
+
+<body>
+<h1>Приветствуем Вас!</h1>
+<hr>
+<h3>Необходима регистрация, заполните форму</h3>
+<hr>
+
+<form action="/registration" method="post">
+
+    Имя пользователя: <input type="text" name="name"><br><br>
+    Электронная почта: <input type="email" name="email"><br><br>
+    Номер телефона: <input type="text" name="phoneNumber"><br><br>
+    Пароль: <input type="password" name="password"/><br><br>
+<!--    <input type="hidden" name="_csrf" content="${_csrf.token}">-->
+    <input type="submit" value="Зарегистрироваться"/>
+<!--    <p th:if="${#fields.hasErrors('password')}" class="text-danger"></p>-->
+<!--    <button th:href="@{/log}" type="submit" class="btn btn-black mr-5 mb-4">Войти</button>-->
+<!--    <button th:href="@{/registration}" type="submit" class="btn btn-secondary mb-3">Регистрация</button>-->
+
+</form>
+<!--<th:if expr=error??>-->
+<!--    <h2 style="color: red"> <input type="submit" value="error"/></h2>-->
+<!--</th:if>-->
+</body>
+</html>
