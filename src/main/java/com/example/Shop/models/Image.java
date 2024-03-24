@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
     @Column(name = "name")
@@ -34,10 +34,11 @@ public class Image {
 
     // устанавливаем отношение таблиц фотографий к товару
     // со стороны фотографий - @ManyToOne (много фотографий)
-    // со стороны товара - уан ту мани
+    // со стороны товара - @OneToMany (один товар)
     // cascade - как повлияет удаление сущности фотографии (Image) на сущность товаров (Product)
     // fetch - способ загрузки привязанных сущностей
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
     private Product product;
 
 }

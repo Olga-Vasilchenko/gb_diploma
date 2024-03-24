@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+</head>
+
+<body>
+<h1>SHOP</h1>
+<h2>Подробная информация о пользователе
+    <th th:text="${user.name}">
+</h2>
+<b>Номер телефона</b>
+<th th:text="${user.phoneNumber}"><br>
+
+    <h3>Товары пользователя<input type="text" name="${user.name}"/><br></h3>
+    <tr th:each="product: ${products}">
+        <div>
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.price}">
+            <td th:text=" руб."></td>
+            <td><a th:href="@{/product-info/{id}(id=${product.id})}">Подробнее..</a></td>
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
+        </div>
+    </tr>
+</body>
+</html>

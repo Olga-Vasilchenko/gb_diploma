@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-  <meta charset="UTF-8">
-  <title>SHOP</title>
-  <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -13,12 +13,15 @@
 
 <h4>Подробная информация о товаре</h4>
 
-<!--<tr th:each="image: ${images}">-->
-<!--  <img th:src="${image.id}" height="60px"/><br><br>-->
+<tr th:each="image: ${images}">
+    <img src="images/${image.id}" height="60px"/><br><br>
 
-  <!--  <img src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
-  <!--  <img src="@{/images/{id}(id=${image.id})}" height="90px"/><br><br>-->
-  <!--  <img th:src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
+    <a th:href="" class="name">Карточка товара</a>
+    </img>
+
+    <!--  <img src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
+    <!--  <img src="@{/images/{id}(id=${image.id})}" height="90px"/><br><br>-->
+    <!--  <img th:src="@{/images/{id}(id=${product.id})}" height="90px"/><br><br>-->
 </tr>
 
 <b>Название товара: </b>
@@ -33,17 +36,18 @@
 <b>Город: </b>
 <td th:text="${product.city}"></td>
 <br>
-<b>Имя: </b>
-<td th:text="${product.user.name}"></td>
+<b>Имя: </b><a th:href="user/${product.user.id}">
+    <td th:text="${product.user.name}"></td>
+</a><br>
 <b>Номер телефона: </b>
 <td th:text="${product.user.phoneNumber}"></td>
 <br>
 <hr>
-<!--<h3>Удалить товар</h3>-->
-<!--<form th:action="@{/product/delete/{id}(id=${product.id})}" th:method="POST">-->
-<!--  <input type="hidden" name="_csrf" value="${_csrf_token}">-->
-<!--  <input type="submit" value="Удалить товар"/>-->
-<!--</form>-->
+<h3>Удалить товар</h3>
+<form th:action="@{/product/delete/{id}(id=${product.id()})}" th:method="POST">
+    <input type="hidden" name="_csrf" value="${_csrf_token}">
+    <input type="submit" value="Удалить товар"/>
+</form>
 </body>
 </html>
 

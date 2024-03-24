@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>SHOP</title>
+</head>
+<body>
+<h1>SHOP</h1>
+<h2>Редактирование пользователя
+    <th th:text="${user.name}">
+</h2>
+<form action="/admin/user/edit" method="post">
+    <tr th:each="role: ${user.roles}">
+        <div>
+            <label><input type="checkbox" th:text="${role}" th:text="${user.roles}"></label>
+        </div>
+        <input type="hidden" value="${user.id}" name="userId">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <button type="submit">save</button>
+</form>
+
+</body>
+</html>

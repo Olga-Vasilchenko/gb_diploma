@@ -1,6 +1,7 @@
 package com.example.Shop.services;
 
 import com.example.Shop.models.User;
+import com.example.Shop.repositories.ImageRepository;
 import com.example.Shop.repositories.ProductRepository;
 import com.example.Shop.models.Image;
 import com.example.Shop.models.Product;
@@ -72,7 +73,8 @@ public class ProductService {
             product.addImageToProduct(image3);
         }
 
-        log.info("Сохранение нового продукта. Product: Title: {}; Author email: {}", product.getUser().getEmail());
+        log.info("Сохранение нового продукта. Title: {}; Author email: {}",
+                product.getTitle(), product.getUser().getEmail());
         Product productFromDb = productRepository.save(product);
         productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
         productRepository.save(product);
@@ -105,8 +107,19 @@ public class ProductService {
      * @param id
      */
 
-    public void deleteProduct(Long id){
-        productRepository.deleteById(id);
+    public void deleteProduct(User user, Long id){
+        Product product = productRepository.findById(id).orElse(null);
+        if (product !=null) {
+            if (product.getUser().getId().equals(user.getId())){
+                productRepository.delete(product);
+                log.info("Продукт с id = {} был удален", id);
+            } else {
+                log.error("Пользователь с id = {}  вас нет продукта с id = {}", user.getEmail(), id);
+            }
+        } else {
+            log.error("Продукт с id = {} не найден", id);
+        }
+//        productRepository.deleteById(id);
 //        products.removeIf(product -> product.getId() == id); // products.removeIf(product -> product.getId().equals(id));
 
     }

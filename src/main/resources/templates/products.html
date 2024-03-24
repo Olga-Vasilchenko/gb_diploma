@@ -4,23 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>SHOP</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
 </head>
 
 <body>
-<link th:href="@{/styles/main.css}" rel="stylesheet"/>
 <img th:src="@{/picture/samsung.jpg}" alt="gh" width="300"/>
-
 <h1>Приветствуем Вас в нашем магазине!</h1>
 <hr>
 
-<if expr="user.email??">
-    <h3>Имя пользователя: <input type="text" name="${user.name}"/><br></h3>
-    <form action="@{/logout}" method="post">
-        <input type="hidden" name="_csrf" content="{{ csrf_token() }}">
-        <input type="submit" value="Выход"/>
-    </form>
-    <else><a th:href="@{/log}">Войти</a></h1></else>
-</if>
+<if expr="user.email??"></if>
+<h3>Имя пользователя: <input type="text" name="${user.name}"/><br></h3>
+<form action="@{/logout}" method="post">
+    <input type="hidden" name="_csrf" content="${_csrf.token}">
+    <input type="submit" value="Выход"/>
+</form>
+<a th:href="@{/login}">Войти</a></h1>
 <hr>
 
 <h2>Посмотреть список товаров</h2>
@@ -28,20 +26,17 @@
     Поиск по названию товара: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
 </form>
-
+<!-- Используем Thymeleaf для перебора списка товаров -->
 <tr th:each="product: ${products}">
     <div>
         <td th:text="${product.title}"></td>
         <td th:text="${product.price}">
         <td th:text=" руб."></td>
 
-        <td><a th:href="@{/product-info/{id}(id=${product.id})}">Подробнее..</a></td>
+        <td><a th:href="@{/product-info/{id}(id=${product.id()})}">Подробнее..</a></td>
     </div>
 </tr>
 
-<!--    <else>-->
-<!--        <h3>Товаров нет</h3>-->
-<!--    </else>-->
 <if expr="user.email??">
     <hr>
     <h2>Создать новый товар</h2>
@@ -53,7 +48,7 @@
         Первая фотография: <input type="file" name="file1"/><br><br>
         Вторая фотография: <input type="file" name="file2"/><br><br>
         Третья фотография: <input type="file" name="file3"/><br><br>
-<!--        <input type="hidden" name="_csrf" content="{{ csrf_token() }}">-->
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Добавить товар"/>
     </form>
 </if>
