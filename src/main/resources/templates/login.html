@@ -10,10 +10,10 @@
 <hr>
 <h2>Авторизация</h2>
 
-<form action="/login" method="post">
+<form th:action="@{/login}" method="post">
     Электронная почта: <input type="email" name="name"><br><br>
     Пароль:<input type="password" name="password"><br><br>
-    <input type="hidden" name="csrf" value="${csrf.token}">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="submit" value="ВХОД"/>
 </form>
 <a th:href="@{/registration}">Зарегистрироваться</a>

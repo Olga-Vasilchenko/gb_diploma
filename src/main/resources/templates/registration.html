@@ -18,7 +18,7 @@
     Электронная почта: <input type="email" name="email"><br><br>
     Номер телефона: <input type="text" name="phoneNumber"><br><br>
     Пароль: <input type="password" name="password"/><br><br>
-    <input type="hidden" name="csrf" value="${csrf.token}">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="submit" value="Зарегистрироваться"/>
     <!--    <p th:if="${#fields.hasErrors('password')}" class="text-danger"></p>-->
     <!--    <button th:href="@{/login}" type="submit" class="btn btn-black mr-5 mb-4">Войти</button>-->

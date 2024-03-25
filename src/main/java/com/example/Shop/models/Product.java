@@ -4,7 +4,6 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,24 +32,24 @@ public class Product {
 
     // создаем коллекцию фотографий
     // mappedBy = "product" - каждый товар, связанный с фотографией будет записан в таблицу Image
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
-    private List<Image> images = new ArrayList<>();
-    private Long previewImageId;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-    private LocalDateTime dateOfCreated; // дата, чтобы знать когда товар был создан
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+	private List<Image> images = new ArrayList<>();
+	private Long previewImageId;
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
+	private LocalDateTime dateOfCreated; // дата, чтобы знать когда товар был создан
 
-    // Аннотация @PrePersist - используется в Hibernate для контроля времени объекта.
-    // Она позволяет пометить методы класса, и Hibernate вызовет эти методы,
-    // когда будет сохранять объект в базу.
-    @PrePersist
-    private void init(){
-        dateOfCreated = LocalDateTime.now();
-    }
+	// Аннотация @PrePersist - используется в Hibernate для контроля времени объекта.
+	// Она позволяет пометить методы класса, и Hibernate вызовет эти методы,
+	// когда будет сохранять объект в базу.
+	@PrePersist
+	private void init(){
+		dateOfCreated = LocalDateTime.now();
+	}
 
-    public void addImageToProduct(Image image){
-        image.setProduct(this);
-        images.add(image);
-    }
+	public void addImageToProduct(Image image){
+		image.setProduct(this);
+		images.add(image);
+	}
 }

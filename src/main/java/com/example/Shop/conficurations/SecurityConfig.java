@@ -11,23 +11,33 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-
+// Конфигурационный файл
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService userDetailsService;
 
+    /**
+     * BCryptPasswordEncoder — это компонент фреймворка Spring Security, который используется в приложениях Spring Boot для безопасного хеширования и проверки паролей.
+     *
+     * Он использует алгоритм хеширования bcrypt, который считается высокобезопасным и специально предназначен для безопасного хранения паролей.
+     *
+     * Этот класс является частью модуля Spring Security и особенно полезен для обработки аутентификации пользователей и хранения паролей в приложении на основе Spring.
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(8);
+        return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public SCryptPasswordEncoder sCryptPasswordEncoder(){
-//        return new SCryptPasswordEncoder();
-//    }
+    // SCryptPasswordEncoder — это кодировщик, который использует алгоритм SCrypt для создания производного ключа, используемого для хранения в базе данных.
+    @Bean
+    public SCryptPasswordEncoder sCryptPasswordEncoder(){
+        return new SCryptPasswordEncoder();
+    }
 
     /**
      * Конфигурация защиты Spring Security

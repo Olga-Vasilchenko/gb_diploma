@@ -45,7 +45,7 @@
 <hr>
 <h3>Удалить товар</h3>
 <form th:action="@{/product/delete/{id}(id=${product.id()})}" th:method="POST">
-    <input type="hidden" name="_csrf" value="${_csrf_token}">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="submit" value="Удалить товар"/>
 </form>
 </body>

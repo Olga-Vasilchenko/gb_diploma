@@ -21,7 +21,7 @@
             <td th:text="${product.price}">
             <td th:text=" руб."></td>
             <td><a th:href="@{/product-info/{id}(id=${product.id})}">Подробнее..</a></td>
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         </div>
     </tr>
 </body>

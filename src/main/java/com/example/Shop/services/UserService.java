@@ -34,6 +34,7 @@ public class UserService {
      * @return
      */
     public boolean createUser(User user) {
+//        String user1 = user.getEmail();
         String email = user.getEmail();
         if (userRepository.findByEmail(email) != null)
             return false;
@@ -41,7 +42,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword())); // шифруем пароль
         user.getRoles().add(Role.ROLE_USER); // даем базовую роль пользователя
         log.info("Сохранение нового пользователя по email: {}", email);
-        userRepository.save(user);
+        userRepository.save(user); // сохраняем пользователя
         return true;
     }
 

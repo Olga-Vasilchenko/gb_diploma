@@ -80,7 +80,7 @@ public class ProductController {
         productService.deleteProduct(productService.getUserByPrincipal(principal), id);
         return "redirect:/my/products";
     }
-
+// для просмотра продукта принадлежащего конкретному пользователю
     @GetMapping("/my/products")
     public String userProducts(Principal principal, Model model){
         User user = productService.getUserByPrincipal(principal);

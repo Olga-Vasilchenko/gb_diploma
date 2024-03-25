@@ -15,7 +15,7 @@
             <label><input type="checkbox" th:text="${role}" th:text="${user.roles}"></label>
         </div>
         <input type="hidden" value="${user.id}" name="userId">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <button type="submit">save</button>
 </form>
 
